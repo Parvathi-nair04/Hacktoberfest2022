@@ -1,0 +1,638 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMWpofiWvH+x7q5S+Az3zB6",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Parvathi-nair04/Hacktoberfest2022/blob/master/spell-checker\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 10,
+      "metadata": {
+        "id": "uGPIRQTuNXX0"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk import word_tokenize"
+      ],
+      "metadata": {
+        "id": "zqxJST2HNzHo"
+      },
+      "execution_count": 50,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.corpus import stopwords"
+      ],
+      "metadata": {
+        "id": "Z0uDY1nNNbEH"
+      },
+      "execution_count": 51,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import string\n",
+        "punctuations = string.punctuation"
+      ],
+      "metadata": {
+        "id": "f1KuTcnSNsuO"
+      },
+      "execution_count": 52,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import nltk\n",
+        "nltk.download('stopwords')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rLZ3RBe-PU9-",
+        "outputId": "c9031a36-6703-48e3-90b5-f04263f2736e"
+      },
+      "execution_count": 53,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package stopwords to /root/nltk_data...\n",
+            "[nltk_data]   Package stopwords is already up-to-date!\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 53
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sent = \"The main challenge, is to start!\""
+      ],
+      "metadata": {
+        "id": "B_Uqh6YvOWBn"
+      },
+      "execution_count": 54,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stop = stopwords.words('english') + list(punctuations)"
+      ],
+      "metadata": {
+        "id": "fZKYcRoRPONO"
+      },
+      "execution_count": 55,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "nltk.download('punkt')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KcUrRNUKPgQO",
+        "outputId": "85ca5fda-d451-4030-cf9e-1e88db164396"
+      },
+      "execution_count": 56,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Package punkt is already up-to-date!\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 56
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"NLTK implementation Result: \", [i for i in word_tokenize(sent) if i not in stop])"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SsWGVEoBPQ9m",
+        "outputId": "f51a9697-8e59-4a39-f6fa-7bf93dacd72c"
+      },
+      "execution_count": 57,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "NLTK implementation Result:  ['The', 'main', 'challenge', 'start']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n"
+      ],
+      "metadata": {
+        "id": "7AD27IywPc2l"
+      },
+      "execution_count": 58,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.stem import PorterStemmer\n",
+        "porter = PorterStemmer()\n",
+        "print(\"NLTK implementation result: \",{\"running\": porter.stem(\"running\"),\"saw\": porter.stem(\"saw\"),\"troubling\": porter.stem(\"troubling\")})\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qRLcNBy9Pk-P",
+        "outputId": "d8eb7c94-71e4-461d-b674-e7a8ace86d79"
+      },
+      "execution_count": 59,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "NLTK implementation result:  {'running': 'run', 'saw': 'saw', 'troubling': 'troubl'}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from nltk.stem import WordNetLemmatizer"
+      ],
+      "metadata": {
+        "id": "vGuCik1aPplG"
+      },
+      "execution_count": 60,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "wordnet_lemmatizer = WordNetLemmatizer()"
+      ],
+      "metadata": {
+        "id": "5N_rwWoqPxyk"
+      },
+      "execution_count": 61,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "nltk.download('wordnet')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KVMW0IjwP-ZZ",
+        "outputId": "e8e9cf29-93db-41bb-bed0-5962b1e64351"
+      },
+      "execution_count": 62,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package wordnet to /root/nltk_data...\n",
+            "[nltk_data]   Package wordnet is already up-to-date!\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 62
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"NLTK implementation result: \",wordnet_lemmatizer.lemmatize('saw',pos='v'))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HvqSCMTxP0_0",
+        "outputId": "3b74eb89-5a20-4f75-a3a4-e8a6571cd700"
+      },
+      "execution_count": 63,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "NLTK implementation result:  saw\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.feature_extraction.text import TfidfVectorizer"
+      ],
+      "metadata": {
+        "id": "kl3GqCyFP5Eo"
+      },
+      "execution_count": 64,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "corpus = [\n",
+        "    'This is the first document.',\n",
+        "    'This document is the second document.',\n",
+        "    'And this is the third one.',\n",
+        "    'Is this the first document?',\n",
+        "]"
+      ],
+      "metadata": {
+        "id": "DSRyTOtzQEnx"
+      },
+      "execution_count": 65,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "vectorizer = TfidfVectorizer(stop_words=stop) #stop was defined initially using stopwords from NLTK"
+      ],
+      "metadata": {
+        "id": "13MdudMUQJlB"
+      },
+      "execution_count": 66,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "X = vectorizer.fit_transform(corpus)"
+      ],
+      "metadata": {
+        "id": "EpH9dGJYQM58"
+      },
+      "execution_count": 67,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(X)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ce0z5RYWQWSL",
+        "outputId": "7be5e6f5-6e2d-4102-82e7-3a1a8e851f3a"
+      },
+      "execution_count": 68,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  (0, 0)\t0.6292275146695526\n",
+            "  (0, 1)\t0.7772211620785797\n",
+            "  (1, 3)\t0.6166684570284895\n",
+            "  (1, 0)\t0.78722297610404\n",
+            "  (2, 2)\t0.7071067811865476\n",
+            "  (2, 4)\t0.7071067811865476\n",
+            "  (3, 0)\t0.6292275146695526\n",
+            "  (3, 1)\t0.7772211620785797\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import re                                  #regular expression\n",
+        "from collections import Counter            #creating frequency count dict\n",
+        "import heapq                               #for selecting n largest\n",
+        "import os"
+      ],
+      "metadata": {
+        "id": "LXJNbQk4QY_R"
+      },
+      "execution_count": 69,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/gdrive')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XfuEQDCRQiBk",
+        "outputId": "b7c0bd7c-a2f0-46b6-e745-99b06548a23d"
+      },
+      "execution_count": 70,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Drive already mounted at /content/gdrive; to attempt to forcibly remount, call drive.mount(\"/content/gdrive\", force_remount=True).\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "os.listdir(\"/content/gdrive/MyDrive\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "coU7Bgj8Qw1i",
+        "outputId": "3c97eee2-29c4-4c1b-e520-81e68d2d6790"
+      },
+      "execution_count": 71,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['Colab Notebooks',\n",
+              " 'Classroom',\n",
+              " 'Assignment 1. Parvathi nair 22115115 .pdf',\n",
+              " 'parvathi nair 22115115.pdf',\n",
+              " 'parvathi nair assignment 1.pdf',\n",
+              " 'parvathi assignment 1 .pdf',\n",
+              " 'phn tut1.pdf',\n",
+              " 'phn 003 1.pdf',\n",
+              " 'certificate (1).pdf',\n",
+              " 'Dirichlet integrals.pdf',\n",
+              " 'Practical 7pvt',\n",
+              " 'Synonyms, Homonyms and Collocations-1.pdf',\n",
+              " 'Synonyms, Homonyms and Collocations-1.gdoc',\n",
+              " 'Copy of Synonyms, Homonyms and Collocations-1.gdoc',\n",
+              " 'Group 9 Practice exercises Phrasal Verbs, Idioms and phrases, antonyms copy.pdf',\n",
+              " 'Group 9 Practice exercises Phrasal Verbs, Idioms and phrases, antonyms copy.gdoc',\n",
+              " 'Identifying grammatical errors in sentences, Tenses, and Prepositions.pdf',\n",
+              " 'Identifying grammatical errors in sentences, Tenses, and Prepositions (1).gdoc',\n",
+              " 'Identifying grammatical errors in sentences, Tenses, and Prepositions.gdoc',\n",
+              " 'Machine Learning Based Song Classifier (2).gdoc',\n",
+              " 'certificate.pdf',\n",
+              " '310trialtext.pdf',\n",
+              " 'Copy of Machine_Learning_Project_Parvathi.ipynb',\n",
+              " 'Registration Data (1).xlsx',\n",
+              " 'Registration Data.xlsx',\n",
+              " 'Registration Data.gsheet',\n",
+              " 'test1.csv',\n",
+              " 'ztgan',\n",
+              " 'Data',\n",
+              " 'beginners-hypothesis-2023.zip',\n",
+              " 'beg hypothesis',\n",
+              " 'Machine Learning Based Song Classifier (1).gdoc',\n",
+              " 'Machine_Learning_Project_Parvathi.ipynb',\n",
+              " 'Machine Learning Based Song Classifier.gdoc',\n",
+              " 'New Document(47) 05-Apr-2023 21-06-26.pdf',\n",
+              " 'L4.pdf',\n",
+              " 'L4.gdoc',\n",
+              " 'New Document(49) 12-May-2023 01-04-44 (1).pdf',\n",
+              " 'New Document(50) 27-May-2023 01-37-22.pdf',\n",
+              " 'New Document(51) 27-May-2023 12-32-49.pdf',\n",
+              " 'New Document(52) 04-Jun-2023 16-17-44.pdf',\n",
+              " 'Parvathi Nair CV.docx',\n",
+              " 'hackerrank (1).docx',\n",
+              " 'hackerrank.docx',\n",
+              " 'New Document(49) 12-May-2023 01-04-44.pdf',\n",
+              " 'Group 15 OOAD.gdoc',\n",
+              " 'paper on Sccharts summary.gdoc',\n",
+              " 'IMG-20231005-WA0018.jpg',\n",
+              " 'DOC-20230802-WA0012..pdf',\n",
+              " 't8.shakespeare.txt',\n",
+              " 'GoogleNews-vectors-negative300.bin.gz']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 71
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def words(text): return re.findall(r'\\w+', text.lower())"
+      ],
+      "metadata": {
+        "id": "uGm67yIwRFNm"
+      },
+      "execution_count": 72,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "WORDS = Counter(words(open('/content/gdrive/MyDrive/t8.shakespeare.txt').read()))\n",
+        "WORDS.most_common(10)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ULh6zYT1RmWh",
+        "outputId": "4951fd41-7091-4b5d-872f-26bb028bf553"
+      },
+      "execution_count": 73,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[('the', 27660),\n",
+              " ('and', 26784),\n",
+              " ('i', 22538),\n",
+              " ('to', 19819),\n",
+              " ('of', 18191),\n",
+              " ('a', 14745),\n",
+              " ('you', 13860),\n",
+              " ('my', 12489),\n",
+              " ('that', 11549),\n",
+              " ('in', 11123)]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 73
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def P(word, N=sum(WORDS.values())):\n",
+        "    \"Probability of `word`.\"\n",
+        "    return WORDS[word] / N"
+      ],
+      "metadata": {
+        "id": "ebOhQuorRo2p"
+      },
+      "execution_count": 74,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def correction(word):\n",
+        "    \"Most probable spelling correction for word.\"\n",
+        "    listProb = {word: P(word) for word in candidates(word)}\n",
+        "    return listProb, max(candidates(word), key=P)\n",
+        "\n",
+        "def candidates(word):\n",
+        "    \"Generate possible spelling corrections for word.\"\n",
+        "    return (known([word]) or known(edits1(word)) or known(edits2(word)) or [word])\n",
+        "\n",
+        "def known(words):\n",
+        "    \"The subset of `words` that appear in the dictionary of WORDS.\"\n",
+        "    return set(w for w in words if w in WORDS)"
+      ],
+      "metadata": {
+        "id": "MaqGeGnmRw9C"
+      },
+      "execution_count": 75,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def edits1(word):\n",
+        "    \"All edits that are one edit away from `word`.\"\n",
+        "    letters    = 'abcdefghijklmnopqrstuvwxyz'\n",
+        "    splits     = [(word[:i], word[i:])    for i in range(len(word) + 1)]\n",
+        "    deletes    = [L + R[1:]               for L, R in splits if R]\n",
+        "    transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R)>1]\n",
+        "    replaces   = [L + c + R[1:]           for L, R in splits if R for c in letters]\n",
+        "    inserts    = [L + c + R               for L, R in splits for c in letters]\n",
+        "    return set(deletes + transposes + replaces + inserts)\n",
+        "\n",
+        "def edits2(word):\n",
+        "    \"All edits that are two edits away from `word`.\"\n",
+        "    return (e2 for e1 in edits1(word) for e2 in edits1(e1))"
+      ],
+      "metadata": {
+        "id": "9iX0PzZ1R0mb"
+      },
+      "execution_count": 76,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def get_correct_word(word):\n",
+        "    corrected_word = next(iter(correction(word)[0]))\n",
+        "    print(\"Word passed: \", word, \" Word corrected To: \", corrected_word)\n",
+        "    return corrected_word\n",
+        "\n",
+        "print(get_correct_word('mighy'))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IpOSWXN1R3d-",
+        "outputId": "32950c56-d0a6-4374-8f03-53eadb72b532"
+      },
+      "execution_count": 80,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Word passed:  mighy  Word corrected To:  mighty\n",
+            "mighty\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "V7svwo78R6G1"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
